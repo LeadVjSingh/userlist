@@ -243,6 +243,8 @@ class Contact extends Component {
           <Card containerStyle={styles.cardContainer}>
             {this.renderHeader()}
             {Separator()}
+            {Separator()}
+            {Separator()}
             {this.renderTel()}
             {Separator()}
             {this.renderEmail()}
