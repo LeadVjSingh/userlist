@@ -36,7 +36,7 @@ function UsersScreen({ navigation }) {
       />
     );
   }
-  console.log("users-->", users.length)
+  console.log("users-->", users)
   // console.log("isLoading--->", isLoading)
   return (
     <View>

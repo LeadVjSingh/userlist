@@ -110,7 +110,6 @@ class Contact extends Component {
     name: PropTypes.string.isRequired,
     address: PropTypes.shape({
       city: PropTypes.string.isRequired,
-      geo: PropTypes.object.isRequired,
       street: PropTypes.string.isRequired,
       suite: PropTypes.string.isRequired,
       zipcode: PropTypes.string.isRequired,
@@ -128,6 +127,13 @@ class Contact extends Component {
       })
     ).isRequired,
 
+    geo: PropTypes.arrayOf(
+      PropTypes.shape({
+        lat: PropTypes.string.isRequired,
+        lng: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+
     tels: PropTypes.arrayOf(
       PropTypes.shape({
         phone: PropTypes.number.isRequired,
@@ -138,7 +144,10 @@ class Contact extends Component {
   }
 
   onPressPlace = () => {
-    console.log('place')
+    var scheme = Platform.OS === 'ios' ? 'maps:' : 'geo:';
+    var url = scheme + `${this.props.address.geo.lat},${this.props.address.geo.lng}`;
+    console.log("this.props.geo-url-->", url)
+    Linking.openURL(url);
   }
 
   onPressTel = number => {
