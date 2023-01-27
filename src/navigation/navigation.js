@@ -8,7 +8,6 @@ import Profile1 from '../screens/Profile1'
 const Stack = createNativeStackNavigator()
 
 const MainNavigation = () => {
-  const users = useSelector(selectAll)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchUser());

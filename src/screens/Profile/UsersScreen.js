@@ -1,4 +1,4 @@
-import { FlatList } from 'react-native';
+import { FlatList, ActivityIndicator } from 'react-native';
 import {
   SafeAreaView,
   View,
@@ -13,15 +13,9 @@ import { fetchUser, selectAll } from '../../stores/user.reducer'
 import UserGridTile from '../../components/UserGridTile';
 import React, { useEffect } from 'react'
 
-// import { CATEGORIES } from '../data/dummy-data';
-
 function UsersScreen({ navigation }) {
   const users = useSelector(selectAll)
   const dispatch = useDispatch()
-
-
-
-
 
   useEffect(() => {
     dispatch(fetchUser())
@@ -42,15 +36,19 @@ function UsersScreen({ navigation }) {
       />
     );
   }
-  console.log("users-->", users)
+  console.log("users-->", users.length)
+  // console.log("isLoading--->", isLoading)
   return (
+    <View>
 
-    <FlatList
-      data={users}
-      keyExtractor={(item) => item.id}
-      renderItem={renderCategoryItem}
-      numColumns={1}
-    />
+      <FlatList
+        data={users}
+        keyExtractor={(item) => item.id}
+        renderItem={renderCategoryItem}
+        numColumns={1}
+      />
+      {!users.length && <ActivityIndicator size="large" color="#00ff00" />}
+    </View>
   );
 }
 
